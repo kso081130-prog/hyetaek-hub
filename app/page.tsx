@@ -2,14 +2,20 @@ import Link from "next/link";
 import { getPublishedPosts } from "@/lib/posts";
 import { SITE_DESCRIPTION } from "@/lib/site";
 
-export default async function HomePage() {
+type Props = {
+  searchParams: Promise<{ tag?: string }>;
+};
+
+export default async function HomePage({ searchParams }: Props) {
+  const { tag: activeTag } = await searchParams;
   const posts = await getPublishedPosts();
-  const allTags = Array.from(new Set(posts.flatMap((p) => p.tags))).slice(0, 10);
+  const allTags = Array.from(new Set(posts.flatMap((p) => p.tags))).sort();
+  const visiblePosts = activeTag ? posts.filter((p) => p.tags.includes(activeTag)) : posts;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
       <section className="mb-10">
-        <p className="text-sm font-medium text-accent mb-2">정부지원금 · 생활비 절약 정보</p>
+        <p className="text-sm font-medium text-accent mb-2">정부지원금 · 장학금 · 생활비 절약 정보</p>
         <h1 className="text-2xl font-bold mb-3 text-ink">{SITE_DESCRIPTION}</h1>
         <p className="text-sm text-ink-soft">
           매일 새로운 지원제도 정보를 정리해서 올립니다. 구체적인 금액이 담긴 글은 국세청·정부24
@@ -31,24 +37,46 @@ export default async function HomePage() {
       </section>
 
       {allTags.length > 0 && (
-        <section className="mb-8 flex flex-wrap gap-2">
-          {allTags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-line bg-surface px-3 py-1 text-xs text-ink-soft"
+        <section className="mb-8">
+          <p className="text-xs font-medium text-ink-soft mb-2">주제별로 찾아보기</p>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/"
+              className={`rounded-full border px-3 py-1 text-xs ${
+                !activeTag
+                  ? "border-accent bg-accent text-white"
+                  : "border-line bg-surface text-ink-soft hover:border-accent"
+              }`}
             >
-              #{tag}
-            </span>
-          ))}
+              전체
+            </Link>
+            {allTags.map((t) => (
+              <Link
+                key={t}
+                href={`/?tag=${encodeURIComponent(t)}`}
+                className={`rounded-full border px-3 py-1 text-xs ${
+                  activeTag === t
+                    ? "border-accent bg-accent text-white"
+                    : "border-line bg-surface text-ink-soft hover:border-accent"
+                }`}
+              >
+                #{t}
+              </Link>
+            ))}
+          </div>
         </section>
       )}
 
-      <h2 className="text-lg font-bold mb-4 text-ink">최신 글 {posts.length > 0 && `(${posts.length})`}</h2>
-      {posts.length === 0 ? (
-        <p className="text-ink-soft text-sm">아직 게시된 글이 없습니다. 매일 아침 새 글이 자동으로 추가됩니다.</p>
+      <h2 className="text-lg font-bold mb-4 text-ink">
+        {activeTag ? `#${activeTag} 관련 글` : "전체 글"} ({visiblePosts.length})
+      </h2>
+      {visiblePosts.length === 0 ? (
+        <p className="text-ink-soft text-sm">
+          {activeTag ? "이 주제로 작성된 글이 아직 없습니다." : "아직 게시된 글이 없습니다. 매일 아침 새 글이 자동으로 추가됩니다."}
+        </p>
       ) : (
         <ul className="flex flex-col gap-4">
-          {posts.map((post) => (
+          {visiblePosts.map((post) => (
             <li key={post.slug}>
               <Link
                 href={`/posts/${post.slug}`}

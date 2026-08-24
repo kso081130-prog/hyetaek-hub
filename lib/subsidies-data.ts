@@ -69,6 +69,13 @@ export const SUBSIDY_PROGRAMS: SubsidyProgram[] = [
     matches: (i) => i.isLowIncomeHousehold,
   },
   {
+    id: "gukga-janghakgeum",
+    name: "국가장학금",
+    summary: "대학생의 등록금 부담을 가구 소득 구간에 따라 지원하는 학자금 지원 제도.",
+    officialUrl: "https://www.kosaf.go.kr",
+    matches: (i) => i.age >= 19 && i.age <= 29 && i.annualHouseholdIncomeManwon < 9000,
+  },
+  {
     id: "gicho-saenghwal-bojang",
     name: "기초생활보장 (생계급여 등)",
     summary: "소득인정액이 기준 이하인 가구에 생계·의료·주거·교육급여를 지원하는 제도.",
