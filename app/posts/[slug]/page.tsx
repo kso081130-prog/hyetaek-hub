@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublishedPosts, getPostMeta } from "@/lib/posts";
 
@@ -49,13 +50,26 @@ export default async function PostPage({ params }: Props) {
   };
 
   return (
-    <article className="mx-auto max-w-2xl px-4 py-12 prose prose-neutral dark:prose-invert prose-a:text-blue-600 dark:prose-a:text-blue-400">
+    <article className="mx-auto max-w-2xl px-4 py-12 prose prose-neutral prose-a:text-accent">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <Link
+        href="/"
+        className="not-prose inline-block text-sm text-ink-soft hover:text-accent mb-6"
+      >
+        ← 전체 글 목록
+      </Link>
       <h1>{meta.title}</h1>
-      <p className="text-sm text-neutral-500 not-prose">{meta.date}</p>
+      <div className="not-prose flex flex-wrap items-center gap-2 -mt-4 mb-6">
+        <time className="text-sm text-ink-soft">{meta.date}</time>
+        {meta.tags?.map((tag) => (
+          <span key={tag} className="rounded-full bg-accent-soft px-2 py-0.5 text-xs text-accent">
+            #{tag}
+          </span>
+        ))}
+      </div>
       <Post />
       {meta.sources?.length > 0 && (
         <>

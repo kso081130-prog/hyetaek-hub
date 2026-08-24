@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-2xl px-4 py-12 prose prose-neutral dark:prose-invert">
+    <div className="mx-auto max-w-2xl px-4 py-12 prose prose-neutral prose-a:text-accent">
       <h1>{SITE_NAME} 소개</h1>
       <p>
         {SITE_NAME}는 정부·지자체 지원금과 생활비 절약 정보를 정리해서 전달하는 개인 운영
