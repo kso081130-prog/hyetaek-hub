@@ -6,6 +6,7 @@ const components: MDXComponents = {
       {children}
     </blockquote>
   ),
+  ol: ({ children }) => <ol className="step-list not-prose my-6">{children}</ol>,
 };
 
 export function useMDXComponents(): MDXComponents {

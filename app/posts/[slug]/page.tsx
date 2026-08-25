@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublishedPosts, getPostMeta } from "@/lib/posts";
 import HelpContacts from "@/components/HelpContacts";
+import { categoryOf } from "@/lib/categories";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -41,6 +42,7 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
   const Post = mod.default;
+  const category = categoryOf(meta.tags ?? []);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -58,10 +60,18 @@ export default async function PostPage({ params }: Props) {
       />
       <Link
         href="/"
-        className="not-prose inline-block text-sm text-ink-soft hover:text-accent mb-6"
+        className="not-prose inline-block text-sm text-ink-soft hover:text-accent mb-4"
       >
         ← 전체 글 목록
       </Link>
+      <div className="not-prose mb-6 flex items-center gap-3 rounded-2xl bg-gradient-to-br from-accent-soft to-accent2-soft px-5 py-4">
+        <span className="text-4xl" aria-hidden>
+          {category?.icon ?? "💰"}
+        </span>
+        <span className="text-sm font-semibold text-accent-dark">
+          {category?.label ?? "정부지원금"}
+        </span>
+      </div>
       <h1>{meta.title}</h1>
       <div className="not-prose flex flex-wrap items-center gap-2 -mt-4 mb-6">
         <time className="text-sm text-ink-soft">{meta.date}</time>
