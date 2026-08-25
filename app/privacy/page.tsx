@@ -45,8 +45,18 @@ export default function PrivacyPage() {
         확인하세요.
       </p>
 
-      <h2>문의</h2>
-      <p>이 방침이나 사이트 운영에 대해 문의할 사항이 있으면 문의 채널을 통해 연락해 주세요.</p>
+      <h2>오류 제보 및 문의</h2>
+      <p>
+        글 내용에 오류를 발견하셨거나 사이트 운영에 대해 궁금한 점이 있으면{" "}
+        <a
+          href="https://github.com/kso081130-prog/hyetaek-hub/issues/new"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub 이슈
+        </a>
+        로 알려주세요.
+      </p>
 
       <p className="text-sm text-ink-soft">최종 수정일: 2026-08-24</p>
     </div>

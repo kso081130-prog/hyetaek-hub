@@ -136,4 +136,20 @@ export const SUBSIDY_PROGRAMS: SubsidyProgram[] = [
     matches: (i) => i.isJobseeking,
     reason: () => "구직활동 중이라고 답하셨어요",
   },
+  {
+    id: "goyongbohum-guijikgeubyeo",
+    name: "실업급여 (고용보험 구직급여)",
+    summary: "고용보험 가입 이력이 있는 퇴직자에게 구직활동 기간 동안 지급되는 급여. 국민취업지원제도와는 별개 제도이니 함께 확인하세요.",
+    officialUrl: "https://www.ei.go.kr",
+    matches: (i) => i.isJobseeking,
+    reason: () => "구직활동 중이라고 답하셨어요 — 최근 퇴직 전 고용보험에 가입되어 있었다면 우선 확인해보세요",
+  },
+  {
+    id: "cheongnyeon-wolse-teukbyeoljiwon",
+    name: "청년월세 특별지원",
+    summary: "국토교통부가 전국 단위로 운영하는, 월세 부담이 큰 청년 세입자를 위한 지원제도.",
+    officialUrl: "https://www.myhome.go.kr",
+    matches: (i) => i.age >= 19 && i.age <= 34 && i.isRenter,
+    reason: () => "만 19~34세 청년이면서 전월세로 거주 중이라고 답하셨어요",
+  },
 ];

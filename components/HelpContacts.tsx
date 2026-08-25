@@ -16,7 +16,11 @@ export default function HelpContacts() {
               {c.name}
             </a>
             <span className="text-ink-soft">
-              {c.phone && <span className="font-mono">☎ {c.phone}</span>}
+              {c.phone && (
+                <a href={`tel:${c.phone.replace(/[^0-9]/g, "")}`} className="font-mono text-accent-dark">
+                  ☎ {c.phone}
+                </a>
+              )}
               {c.phone && " · "}
               {c.note}
             </span>

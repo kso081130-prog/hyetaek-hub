@@ -19,7 +19,13 @@ export default function AboutPage() {
       <ul>
         <li>구체적인 금액·자격요건이 담긴 글은 공식 자료(국세청, 정부24, 복지로 등)를 근거로 작성하고 출처를 표시합니다.</li>
         <li>이 사이트의 정보는 참고용 안내이며 법률·세무·재무 자문이 아닙니다. 실제 신청 전에는 반드시 해당 기관 공식 페이지에서 최신 정보를 다시 확인하세요.</li>
-        <li>오류를 발견하시면 언제든 알려주세요.</li>
+        <li>
+          오류를 발견하시면{" "}
+          <a href="https://github.com/kso081130-prog/hyetaek-hub/issues/new" target="_blank" rel="noopener noreferrer">
+            GitHub 이슈
+          </a>
+          로 알려주세요.
+        </li>
       </ul>
     </div>
   );
