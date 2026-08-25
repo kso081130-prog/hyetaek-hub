@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublishedPosts, getPostMeta } from "@/lib/posts";
+import HelpContacts from "@/components/HelpContacts";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -70,6 +71,21 @@ export default async function PostPage({ params }: Props) {
           </span>
         ))}
       </div>
+      {meta.sources?.length > 0 && (
+        <div className="not-prose flex flex-wrap gap-3 mb-8">
+          {meta.sources.map((source) => (
+            <a
+              key={source.url}
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="inline-flex items-center gap-1 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+            >
+              {source.title} 신청·확인 바로가기 →
+            </a>
+          ))}
+        </div>
+      )}
       <Post />
       {meta.sources?.length > 0 && (
         <>
@@ -86,6 +102,7 @@ export default async function PostPage({ params }: Props) {
           </ul>
         </>
       )}
+      <HelpContacts />
     </article>
   );
 }

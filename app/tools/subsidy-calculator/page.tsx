@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SubsidyCalculator from "@/components/SubsidyCalculator";
+import HelpContacts from "@/components/HelpContacts";
 
 export const metadata: Metadata = {
   title: "우리집 지원금 계산기",
@@ -16,6 +17,7 @@ export default function SubsidyCalculatorPage() {
         각 제도 공식 페이지에서 다시 확인해주세요.
       </p>
       <SubsidyCalculator />
+      <HelpContacts />
     </div>
   );
 }
