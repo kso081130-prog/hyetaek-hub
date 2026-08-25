@@ -34,11 +34,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-ink">
-        <header className="border-b border-line bg-surface">
+      <body className="min-h-full flex flex-col text-ink">
+        <header className="border-b border-line bg-surface/80 backdrop-blur sticky top-0 z-10">
           <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4">
-            <Link href="/" className="text-lg font-bold text-ink">
-              🌱 {SITE_NAME}
+            <Link href="/" className="text-lg font-bold text-ink flex items-center gap-1.5">
+              <span className="text-2xl">🍯</span> {SITE_NAME}
             </Link>
             <nav className="flex gap-5 text-sm font-medium text-ink-soft">
               <Link href="/" className="hover:text-accent">
@@ -54,9 +54,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
         </header>
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-line mt-16">
+        <footer className="border-t border-line mt-16 bg-surface/60">
           <div className="mx-auto max-w-3xl px-4 py-8 text-sm text-ink-soft flex flex-wrap gap-4">
-            <span>&copy; {new Date().getFullYear()} {SITE_NAME}</span>
+            <span>🍯 &copy; {new Date().getFullYear()} {SITE_NAME}</span>
             <Link href="/privacy" className="hover:text-accent">
               개인정보처리방침
             </Link>

@@ -1,4 +1,4 @@
-# 혜택허브 (hyetaek-hub)
+# 꿀머니 (hyetaek-hub)
 
 정부지원금·생활비 절약 정보를 매일 정리해서 알려주는 사이트. Next.js(App Router) + MDX
 기반이고, 콘텐츠는 git 커밋 자체가 CMS 역할을 한다 (DB 없음).

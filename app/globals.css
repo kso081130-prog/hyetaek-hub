@@ -3,13 +3,16 @@
 
 :root {
   color-scheme: light;
-  --bg: #f6f7fa;
-  --surface: #ffffff;
-  --ink: #12151a;
-  --ink-soft: #454b54;
-  --line: #e1e4ea;
-  --accent: #2f5fe0;
-  --accent-soft: #eaf0ff;
+  --bg: #fbf6ec;
+  --surface: #fffdf8;
+  --ink: #201a10;
+  --ink-soft: #6b5c46;
+  --line: #ecdfc4;
+  --accent: #c9820a;
+  --accent-soft: #fdedc7;
+  --accent-dark: #8a5a06;
+  --accent2: #2f8f6f;
+  --accent2-soft: #e1f3ea;
 }
 
 @theme inline {
@@ -20,12 +23,18 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent2: var(--accent2);
+  --color-accent2-soft: var(--accent2-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(60rem 30rem at 15% -10%, #fdedc7 0%, transparent 60%),
+    radial-gradient(50rem 25rem at 110% 10%, #e1f3ea 0%, transparent 55%),
+    var(--bg);
   color: var(--ink);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }

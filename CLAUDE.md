@@ -1,6 +1,6 @@
-# 혜택허브 — Claude Code 프로젝트 가이드
+# 꿀머니 — Claude Code 프로젝트 가이드
 
-- **프로젝트 이름:** 혜택허브 (hyetaek-hub) — 정부지원금·생활비 절약 정보 사이트
+- **프로젝트 이름:** 꿀머니 (hyetaek-hub) — 정부지원금·생활비 절약 정보 사이트
 - **기술 스택:** Next.js 16(App Router, Turbopack) + TypeScript + Tailwind CSS v4 + MDX.
   DB 없음 — `content/posts/*.mdx`가 콘텐츠 저장소, git 커밋이 곧 CMS.
 - **개발 서버 실행:** `npm run dev` (포트 3000)
