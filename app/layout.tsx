@@ -45,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 전체 글
               </Link>
               <Link href="/tools/subsidy-calculator" className="hover:text-accent">
-                지원금 계산기
+                지원금 진단
               </Link>
               <Link href="/about" className="hover:text-accent">
                 소개
