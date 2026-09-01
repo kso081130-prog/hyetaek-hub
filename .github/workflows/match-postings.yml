@@ -23,8 +23,6 @@ jobs:
 
       - name: 매칭 스크립트 실행
         env:
-          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
-          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           INGEST_SECRET: ${{ secrets.INGEST_SECRET }}
           INGEST_URL: https://hyetaek-hub.vercel.app/api/postings/ingest
