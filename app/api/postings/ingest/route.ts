@@ -29,7 +29,12 @@ function isValidPosting(body: unknown): body is IngestPosting {
     (field) => typeof record[field] === 'string' && record[field] !== ''
   )
   if (!hasRequiredFields) return false
-  return VALID_CATEGORIES.has(record.category as string)
+  if (!VALID_CATEGORIES.has(record.category as string)) return false
+  if (!/^https?:\/\//i.test(record.url as string)) return false
+  if (record.deadline !== undefined && record.deadline !== null && typeof record.deadline !== 'string') {
+    return false
+  }
+  return true
 }
 
 export async function POST(request: Request) {

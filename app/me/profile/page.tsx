@@ -12,7 +12,7 @@ export default async function ProfilePage() {
     : { data: null }
 
   return (
-    <main className="mx-auto max-w-sm px-4 py-12">
+    <div className="mx-auto max-w-sm px-4 py-12">
       <h1 className="mb-6 text-xl font-semibold">매칭 조건</h1>
       <form action={saveProfile} className="flex flex-col gap-4">
         <label className="flex flex-col gap-1 text-sm">
@@ -63,6 +63,6 @@ export default async function ProfilePage() {
           저장
         </button>
       </form>
-    </main>
+    </div>
   )
 }

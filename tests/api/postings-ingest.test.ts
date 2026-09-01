@@ -43,6 +43,24 @@ test('필수 필드 빠지면 400', async () => {
   assert.equal(res.status, 400)
 })
 
+test('url이 http(s)가 아니면 400', async () => {
+  process.env.INGEST_SECRET = 'test-secret'
+  const { POST } = await import('../../app/api/postings/ingest/route.ts')
+  const res = await POST(
+    makeRequest({ ...validPosting, url: 'javascript:alert(1)' }, 'test-secret')
+  )
+  assert.equal(res.status, 400)
+})
+
+test('deadline이 문자열/null이 아니면 400', async () => {
+  process.env.INGEST_SECRET = 'test-secret'
+  const { POST } = await import('../../app/api/postings/ingest/route.ts')
+  const res = await POST(
+    makeRequest({ ...validPosting, deadline: 12345 }, 'test-secret')
+  )
+  assert.equal(res.status, 400)
+})
+
 test('정상 요청이면 201, upsert가 url unique 기준 ignoreDuplicates로 호출됨', async () => {
   process.env.INGEST_SECRET = 'test-secret'
 

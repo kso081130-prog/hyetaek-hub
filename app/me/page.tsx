@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import { markAsRead } from './actions'
+import { markAsRead, signOut } from './actions'
 
 const CATEGORY_LABEL: Record<string, string> = {
   scholarship: '장학금',
@@ -16,8 +16,15 @@ export default async function MePage() {
     .order('deadline', { ascending: true, nullsFirst: false })
 
   return (
-    <main className="mx-auto max-w-2xl px-4 py-12">
-      <h1 className="mb-6 text-xl font-semibold">내 지원사업 매칭</h1>
+    <div className="mx-auto max-w-2xl px-4 py-12">
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-xl font-semibold">내 지원사업 매칭</h1>
+        <form action={signOut}>
+          <button type="submit" className="text-sm text-gray-500 underline">
+            로그아웃
+          </button>
+        </form>
+      </div>
       <ul className="flex flex-col gap-4">
         {(postings ?? []).map((p) => (
           <li
@@ -61,6 +68,6 @@ export default async function MePage() {
           <p className="text-sm text-gray-500">아직 매칭된 공고가 없어.</p>
         )}
       </ul>
-    </main>
+    </div>
   )
 }
