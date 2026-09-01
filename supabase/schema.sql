@@ -1,5 +1,15 @@
 -- supabase/schema.sql
 -- Supabase SQL Editor에 붙여넣어 실행 (사용자가 수동으로 1회 실행)
+--
+-- ⚠️ 이 SQL 실행 후 반드시 수동으로 해야 할 일 ⚠️
+-- Supabase Dashboard → Authentication → Sign In / Providers 에서
+-- "Allow new users to sign up"을 OFF로 꺼야 한다.
+-- 이유: 아래 postings 테이블의 RLS 정책은 "로그인한 사용자는 누구나 읽기/쓰기 가능"으로
+-- 되어 있다 (1인 전용 앱이라 가정). 즉 이 앱의 실제 접근 경계는 RLS가 아니라
+-- "회원가입이 막혀 있어서 나 말고는 아무도 로그인할 수 없다"는 사실에 있다.
+-- 회원가입이 열려 있으면 누구나 가입해서 postings.why_matched(예: "자립준비청년 조건과
+-- 일치", "기초생활수급자 대상" 등 특정 개인의 추정 자격 상태를 드러내는 내용)를 읽을 수
+-- 있게 된다. 반드시 끌 것.
 
 create table if not exists profiles (
   user_id uuid primary key references auth.users(id) on delete cascade,

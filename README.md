@@ -64,6 +64,17 @@ git push origin main   # Vercel이 자동 배포
   일반적인 절차 안내 위주로 안전하게 글을 쓰도록 폴백하지만, 최신 뉴스 맥락 없이 쓰는
   것이라 특정 정책 변경 같은 최신성은 반영되지 않는다.
 
+## 지원사업 매칭 알리미 (Supabase)
+
+`/login`, `/me`, `/me/profile`은 Supabase(Postgres + Auth)를 쓴다. `supabase/schema.sql`을
+Supabase SQL Editor에 1회 실행해서 테이블·RLS 정책을 만든다.
+
+**⚠️ 필수:** 스키마 실행 후 Supabase Dashboard → Authentication → Sign In / Providers에서
+"Allow new users to sign up"을 반드시 OFF로 끌 것. 이 앱은 1인 전용이고, `postings` 테이블의
+RLS 정책은 "로그인한 사용자는 누구나 읽기/쓰기 가능"으로 되어 있어 회원가입이 열려 있으면
+누구나 가입해서 개인 매칭 정보(`why_matched` 등)를 볼 수 있다. 자세한 내용은
+`supabase/schema.sql` 상단 주석 참고.
+
 ## 배포
 
 **`git push origin main`으로만 배포한다.** Vercel CLI로 직접 배포하지 말 것 (Vercel의
